@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Toyota Ist - Vente</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0b0b;
+      color: white;
+    }
+
+    /* EN-TÊTE */
+    header {
+      background: linear-gradient(135deg, #111, #252525);
+      padding: 25px 15px;
+      text-align: center;
+      border-bottom: 3px solid #e60000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 4px;
+      background: #e60000;
+      transform: rotate(-25deg);
+      left: -50px;
+      top: 20px;
+      box-shadow: 0 25px 0 #e60000;
+    }
+
+    header h1 {
+      font-size: 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    header p {
+      color: #ccc;
+      margin-top: 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* CONTENU */
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    /* CARTE VOITURE */
+    .car-card {
+      background: #151515;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #333;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .car-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #e60000, white, #e60000);
+    }
+
+    /* IMAGE */
+    .car-image {
+      height: 300px;
+      background: linear-gradient(135deg, #333, #111);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 90px;
+      position: relative;
+    }
+
+    .car-image::after {
+      content: "TOYOTA";
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 5px;
+      color: #aaa;
+    }
+
+    /* INFORMATIONS */
+    .car-info {
+      padding: 25px;
+    }
+
+    .car-info h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      color: #ff3030;
+      font-size: 30px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .description {
+      color: #bbb;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* CARACTÉRISTIQUES */
+    .specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .spec {
+      background: #222;
+      padding: 15px;
+      border-left: 3px solid #e60000;
+      border-radius: 8px;
+    }
+
+    .spec strong {
+      display: block;
+      color: white;
+      margin-bottom: 5px;
+    }
+
+    .spec span {
+      color: #aaa;
+    }
+
+    /* BOUTON */
+    .buy-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #d90000, #ff3333);
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .buy-button:hover {
+      transform: scale(1.02);
+      box-shadow: 0 5px 20px rgba(255,0,0,0.4);
+    }
+
+    /* TRAITS DÉCORATIFS */
+    .lines {
+      height: 80px;
+      position: relative;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .lines::before,
+    .lines::after {
+      content: "";
+      position: absolute;
+      height: 3px;
+      background: #e60000;
+      transform: rotate(-5deg);
+    }
+
+    .lines::before {
+      width: 70%;
+      left: -10%;
+      top: 25px;
+    }
+
+    .lines::after {
+      width: 50%;
+      right: -5%;
+      top: 50px;
+      background: white;
+    }
+
+    /* PIED DE PAGE */
+    footer {
+      text-align: center;
+      padding: 30px;
+      margin-top: 50px;
+      background: #111;
+      color: #777;
+      border-top: 1px solid #333;
+    }
+
+    /* TÉLÉPHONE */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 26px;
+      }
+
+      .car-image {
+        height: 220px;
+        font-size: 65px;
+      }
+
+      .specs {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🚗 AUTO MARKET</h1>
+    <p>Des voitures fiables à bon prix</p>
+  </header>
+
+  <div class="container">
+
+    <div class="lines"></div>
+
+    <div class="car-card">
+
+      <div class="car-image">
+        🚗
+      </div>
+
+      <div class="car-info">
+
+        <h2>Toyota Ist</h2>
+
+        <div class="price">
+          3 700 $
+        </div>
+
+        <p class="description">
+          Découvrez cette Toyota Ist, une voiture pratique,
+          confortable et idéale pour les déplacements quotidiens.
+        </p>
+
+        <div class="specs">
+
+          <div class="spec">
+            <strong>🚘 Modèle</strong>
+            <span>Toyota Ist</span>
+          </div>
+
+          <div class="spec">
+            <strong>💰 Prix</strong>
+            <span>3 700 $</span>
+          </div>
+
+          <div class="spec">
+            <strong>⚙️ Boîte</strong>
+            <span>Automatique</span>
+          </div>
+
+          <div class="spec">
+            <strong>⛽ Carburant</strong>
+            <span>Essence</span>
+          </div>
+
+        </div>
+
+        <button class="buy-button" onclick="acheter()">
+          📞 Je suis intéressé
+        </button>
+
+      </div>
+    </div>
+
+    <div class="lines"></div>
+
+  </div>
+
+  <footer>
+    © 2026 AUTO MARKET — Vente de véhicules
+  </footer>
+
+  <script>
+    function acheter() {
+      alert("Merci pour votre intérêt pour la Toyota Ist à 3 700 $ !");
+    }
+  </script>
+
+</body>
+</html>
