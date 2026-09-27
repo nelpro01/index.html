@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Toyota Ist - Vente</title>
+  <title>Toyota Ist | Auto Market</title>
 
   <style>
     * {
@@ -15,16 +15,16 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: #0b0b0b;
+      background: #080808;
       color: white;
     }
 
-    /* EN-TÊTE */
+    /* HEADER */
     header {
       background: linear-gradient(135deg, #111, #252525);
       padding: 25px 15px;
       text-align: center;
-      border-bottom: 3px solid #e60000;
+      border-bottom: 3px solid #e00000;
       position: relative;
       overflow: hidden;
     }
@@ -32,91 +32,106 @@
     header::before {
       content: "";
       position: absolute;
-      width: 250px;
+      width: 300px;
       height: 4px;
-      background: #e60000;
-      transform: rotate(-25deg);
-      left: -50px;
-      top: 20px;
-      box-shadow: 0 25px 0 #e60000;
+      background: #e00000;
+      transform: rotate(-20deg);
+      left: -80px;
+      top: 25px;
+      box-shadow: 0 30px 0 #e00000;
     }
 
     header h1 {
       font-size: 32px;
       position: relative;
-      z-index: 2;
     }
 
     header p {
-      color: #ccc;
+      color: #bbb;
       margin-top: 8px;
       position: relative;
-      z-index: 2;
     }
 
-    /* CONTENU */
+    /* CONTENEUR */
     .container {
       max-width: 900px;
-      margin: 40px auto;
+      margin: auto;
       padding: 20px;
     }
 
-    /* CARTE VOITURE */
+    /* CARTE */
     .car-card {
+      margin-top: 25px;
       background: #151515;
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid #333;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      position: relative;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.7);
     }
 
-    .car-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
+    /* GALERIE */
+    .gallery {
+      position: relative;
       width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, #e60000, white, #e60000);
+      height: 330px;
+      background: #222;
+      overflow: hidden;
     }
 
-    /* IMAGE */
-    .car-image {
-      height: 300px;
-      background: linear-gradient(135deg, #333, #111);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 90px;
-      position: relative;
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
     }
 
-    .car-image::after {
-      content: "TOYOTA";
+    .gallery img.active {
+      display: block;
+    }
+
+    /* BOUTONS GALERIE */
+    .prev,
+    .next {
       position: absolute;
-      bottom: 15px;
-      right: 20px;
-      font-size: 18px;
-      font-weight: bold;
-      letter-spacing: 5px;
-      color: #aaa;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      border: none;
+      font-size: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
     }
 
-    /* INFORMATIONS */
-    .car-info {
+    .prev {
+      left: 15px;
+    }
+
+    .next {
+      right: 15px;
+    }
+
+    .prev:hover,
+    .next:hover {
+      background: #e00000;
+    }
+
+    /* INFOS */
+    .info {
       padding: 25px;
     }
 
-    .car-info h2 {
-      font-size: 30px;
+    .info h2 {
+      font-size: 32px;
       margin-bottom: 10px;
     }
 
     .price {
-      color: #ff3030;
-      font-size: 30px;
+      font-size: 32px;
       font-weight: bold;
+      color: #ff2525;
       margin: 15px 0;
     }
 
@@ -126,24 +141,23 @@
       margin-bottom: 20px;
     }
 
-    /* CARACTÉRISTIQUES */
+    /* CARACTERISTIQUES */
     .specs {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin: 20px 0;
+      margin-bottom: 25px;
     }
 
     .spec {
       background: #222;
       padding: 15px;
-      border-left: 3px solid #e60000;
+      border-left: 4px solid #e00000;
       border-radius: 8px;
     }
 
     .spec strong {
       display: block;
-      color: white;
       margin-bottom: 5px;
     }
 
@@ -151,79 +165,105 @@
       color: #aaa;
     }
 
-    /* BOUTON */
-    .buy-button {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      border: none;
+    /* CONTACT */
+    .contact {
+      background: linear-gradient(135deg, #e00000, #990000);
+      padding: 25px;
+      text-align: center;
+      border-radius: 15px;
+      margin-top: 10px;
+    }
+
+    .contact h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .phone {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 12px 0 20px;
+      letter-spacing: 1px;
+    }
+
+    .call-button {
+      display: inline-block;
+      background: white;
+      color: #d00000;
+      text-decoration: none;
+      padding: 14px 25px;
       border-radius: 10px;
-      background: linear-gradient(90deg, #d90000, #ff3333);
-      color: white;
       font-size: 18px;
       font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
     }
 
-    .buy-button:hover {
-      transform: scale(1.02);
-      box-shadow: 0 5px 20px rgba(255,0,0,0.4);
+    .call-button:hover {
+      transform: scale(1.05);
     }
 
-    /* TRAITS DÉCORATIFS */
+    /* TRAITS */
     .lines {
-      height: 80px;
+      height: 70px;
       position: relative;
       overflow: hidden;
-      margin: 20px 0;
-    }
-
-    .lines::before,
-    .lines::after {
-      content: "";
-      position: absolute;
-      height: 3px;
-      background: #e60000;
-      transform: rotate(-5deg);
     }
 
     .lines::before {
+      content: "";
+      position: absolute;
       width: 70%;
-      left: -10%;
+      height: 3px;
+      background: #e00000;
       top: 25px;
+      left: -10%;
+      transform: rotate(-5deg);
     }
 
     .lines::after {
+      content: "";
+      position: absolute;
       width: 50%;
-      right: -5%;
-      top: 50px;
+      height: 3px;
       background: white;
+      top: 48px;
+      right: -5%;
+      transform: rotate(-5deg);
     }
 
-    /* PIED DE PAGE */
+    /* FOOTER */
     footer {
+      margin-top: 40px;
+      padding: 25px;
       text-align: center;
-      padding: 30px;
-      margin-top: 50px;
       background: #111;
       color: #777;
-      border-top: 1px solid #333;
     }
 
-    /* TÉLÉPHONE */
+    /* TELEPHONE */
     @media (max-width: 600px) {
+
       header h1 {
-        font-size: 26px;
+        font-size: 27px;
       }
 
-      .car-image {
-        height: 220px;
-        font-size: 65px;
+      .gallery {
+        height: 250px;
+      }
+
+      .info h2 {
+        font-size: 27px;
+      }
+
+      .price {
+        font-size: 28px;
       }
 
       .specs {
         grid-template-columns: 1fr;
+      }
+
+      .phone {
+        font-size: 24px;
       }
     }
   </style>
@@ -233,7 +273,7 @@
 
   <header>
     <h1>🚗 AUTO MARKET</h1>
-    <p>Des voitures fiables à bon prix</p>
+    <p>Votre voiture, votre choix</p>
   </header>
 
   <div class="container">
@@ -242,11 +282,26 @@
 
     <div class="car-card">
 
-      <div class="car-image">
-        🚗
+      <!-- GALERIE PHOTOS -->
+      <div class="gallery">
+
+        <img src="20260927_120054.jpg" class="active" alt="Toyota Ist">
+        <img src="20260927_120108.jpg" alt="Toyota Ist">
+        <img src="20260927_120120.jpg" alt="Toyota Ist">
+        <img src="20260927_120133.jpg" alt="Toyota Ist">
+        <img src="20260927_120147.jpg" alt="Toyota Ist">
+        <img src="20260927_120202.jpg" alt="Toyota Ist">
+        <img src="20260927_120225.jpg" alt="Toyota Ist">
+        <img src="20260927_120241.jpg" alt="Toyota Ist">
+        <img src="20260927_120254.jpg" alt="Toyota Ist">
+
+        <button class="prev" onclick="previousImage()">‹</button>
+        <button class="next" onclick="nextImage()">›</button>
+
       </div>
 
-      <div class="car-info">
+      <!-- INFORMATIONS -->
+      <div class="info">
 
         <h2>Toyota Ist</h2>
 
@@ -255,8 +310,8 @@
         </div>
 
         <p class="description">
-          Découvrez cette Toyota Ist, une voiture pratique,
-          confortable et idéale pour les déplacements quotidiens.
+          Découvrez cette Toyota Ist disponible à la vente.
+          Une voiture pratique, élégante et idéale pour vos déplacements.
         </p>
 
         <div class="specs">
@@ -272,7 +327,7 @@
           </div>
 
           <div class="spec">
-            <strong>⚙️ Boîte</strong>
+            <strong>⚙️ Transmission</strong>
             <span>Automatique</span>
           </div>
 
@@ -283,11 +338,23 @@
 
         </div>
 
-        <button class="buy-button" onclick="acheter()">
-          📞 Je suis intéressé
-        </button>
+        <!-- CONTACT -->
+        <div class="contact">
+
+          <h3>📞 Intéressé par cette voiture ?</h3>
+
+          <div class="phone">
+            0841 300 783
+          </div>
+
+          <a class="call-button" href="tel:0841300783">
+            📞 Appeler maintenant
+          </a>
+
+        </div>
 
       </div>
+
     </div>
 
     <div class="lines"></div>
@@ -295,14 +362,48 @@
   </div>
 
   <footer>
-    © 2026 AUTO MARKET — Vente de véhicules
+    © 2026 AUTO MARKET
   </footer>
 
+
   <script>
-    function acheter() {
-      alert("Merci pour votre intérêt pour la Toyota Ist à 3 700 $ !");
+
+    let currentImage = 0;
+
+    const images = document.querySelectorAll(".gallery img");
+
+    function showImage(index) {
+
+      images.forEach(function(img) {
+        img.classList.remove("active");
+      });
+
+      images[index].classList.add("active");
     }
+
+    function nextImage() {
+
+      currentImage++;
+
+      if (currentImage >= images.length) {
+        currentImage = 0;
+      }
+
+      showImage(currentImage);
+    }
+
+    function previousImage() {
+
+      currentImage--;
+
+      if (currentImage < 0) {
+        currentImage = images.length - 1;
+      }
+
+      showImage(currentImage);
+    }
+
   </script>
 
 </body>
-</html>
+  </html>
