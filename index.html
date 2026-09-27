@@ -1,409 +1,175 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Toyota Ist | Auto Market</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #080808;
-      color: white;
-      overflow-x: hidden;
-    }
-
-    /* ================= HEADER ================= */
-
-    header {
-      min-height: 230px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background:
-        radial-gradient(circle at center, #292929 0%, #111 45%, #050505 100%);
-      border-bottom: 2px solid #e00000;
-      position: relative;
-      overflow: hidden;
-    }
-
-    header h1 {
-      font-size: clamp(35px, 8vw, 65px);
-      letter-spacing: 5px;
-      animation: titleAppear 1.2s ease-out forwards;
-      opacity: 0;
-    }
-
-    header p {
-      margin-top: 15px;
-      color: #aaa;
-      font-size: 18px;
-      animation: subtitleAppear 1.5s ease-out 0.4s forwards;
-      opacity: 0;
-    }
-
-    /* Traits animés */
-
-    header::before,
-    header::after {
-      content: "";
-      position: absolute;
-      height: 3px;
-      background: #e00000;
-      transform: rotate(-12deg);
-    }
-
-    header::before {
-      width: 45%;
-      left: -10%;
-      top: 55px;
-      animation: lineMove 3s ease-in-out infinite alternate;
-    }
-
-    header::after {
-      width: 35%;
-      right: -5%;
-      bottom: 55px;
-      animation: lineMove 3s ease-in-out infinite alternate-reverse;
-    }
-
-    /* ================= CONTENEUR ================= */
-
-    .container {
-      max-width: 950px;
-      margin: auto;
-      padding: 30px 20px;
-    }
-
-    /* ================= LIGNES ================= */
-
-    .lines {
-      height: 50px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .lines::before {
-      content: "";
-      position: absolute;
-      width: 70%;
-      height: 2px;
-      background: #e00000;
-      top: 20px;
-      left: -20%;
-      transform: rotate(-4deg);
-      animation: lineSlide 3s linear infinite;
-    }
-
-    .lines::after {
-      content: "";
-      position: absolute;
-      width: 45%;
-      height: 2px;
-      background: white;
-      top: 35px;
-      right: -20%;
-      transform: rotate(-4deg);
-      animation: lineSlideReverse 3s linear infinite;
-    }
-
-    /* ================= CARTE ================= */
-
-    .car-card {
-      background: #121212;
-      border: 1px solid #292929;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-      animation: cardAppear 1s ease-out;
-    }
-
-    /* ================= GALERIE ================= */
-
-    .gallery {
-      position: relative;
-      width: 100%;
-      height: 480px;
-      background: #050505;
-      overflow: hidden;
-    }
-
-    .gallery img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transform: scale(1.08);
-      transition:
-        opacity 0.7s ease,
-        transform 1.2s ease;
-    }
-
-    .gallery img.active {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* Boutons galerie */
-
-    .prev,
-    .next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.4);
-      background: rgba(0,0,0,0.65);
-      color: white;
-      font-size: 35px;
-      cursor: pointer;
-      transition: 0.3s;
-      z-index: 5;
-    }
-
-    .prev {
-      left: 20px;
-    }
-
-    .next {
-      right: 20px;
-    }
-
-    .prev:hover,
-    .next:hover {
-      background: #e00000;
-      border-color: #e00000;
-      transform: translateY(-50%) scale(1.12);
-    }
-
-    /* ================= INFORMATIONS ================= */
-
-    .info {
-      padding: 35px;
-    }
-
-    .info h2 {
-      font-size: 42px;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-      animation: textSlide 0.8s ease-out;
-    }
-
-    .price {
-      display: inline-block;
-      color: #ff2020;
-      font-size: 38px;
-      font-weight: bold;
-      margin: 10px 0 20px;
-      animation: pricePulse 2.5s ease-in-out infinite;
-    }
-
-    .description {
-      color: #aaa;
-      font-size: 17px;
-      line-height: 1.8;
-      max-width: 750px;
-      animation: textSlide 1s ease-out 0.2s backwards;
-    }
-
-    /* ================= CARACTÉRISTIQUES ================= */
-
-    .specs {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin: 30px 0;
-    }
-
-    .spec {
-      padding: 20px;
-      background: #1b1b1b;
-      border-left: 3px solid #e00000;
-      border-radius: 10px;
-      transition: 0.35s;
-      animation: specAppear 0.8s ease-out backwards;
-    }
-
-    .spec:nth-child(1) {
-      animation-delay: 0.2s;
-    }
-
-    .spec:nth-child(2) {
-      animation-delay: 0.35s;
-    }
-
-    .spec:nth-child(3) {
-      animation-delay: 0.5s;
-    }
-
-    .spec:nth-child(4) {
-      animation-delay: 0.65s;
-    }
-
-    .spec:hover {
-      transform: translateX(8px);
-      background: #242424;
-      border-left-width: 6px;
-    }
-
-    .spec strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 16px;
-    }
-
-    .spec span {
-      color: #999;
-    }
-
-    /* ================= CONTACT ================= */
-
-    .contact {
-      margin-top: 20px;
-      padding: 30px;
-      text-align: center;
-      border-radius: 15px;
-      background:
-        linear-gradient(135deg, #b00000, #e00000, #8b0000);
-      background-size: 200% 200%;
-      animation: backgroundMove 5s ease infinite;
-    }
-
-    .contact h3 {
-      font-size: 24px;
-      animation: textSlide 0.8s ease-out;
-    }
-
-    .phone {
-      font-size: 31px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      margin: 15px 0 22px;
-      animation: phoneGlow 2s ease-in-out infinite;
-    }
-
-    .call-button {
-      display: inline-block;
-      padding: 15px 30px;
-      background: white;
-      color: #b00000;
-      text-decoration: none;
-      border-radius: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .call-button:hover {
-      transform: translateY(-5px) scale(1.04);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    }
-
-    .call-button:active {
-      transform: scale(0.96);
-    }
-
-    /* ================= FOOTER ================= */
-
-    footer {
-      margin-top: 40px;
-      padding: 30px;
-      text-align: center;
-      color: #666;
-      border-top: 1px solid #222;
-    }
-
-    /* ================= ANIMATIONS ================= */
-
-    @keyframes titleAppear {
-      from {
-        opacity: 0;
-        transform: translateY(-35px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes subtitleAppear {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes cardAppear {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes textSlide {
-      from {
-        opacity: 0;
-        transform: translateX(-35px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes specAppear {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes pricePulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.04);
-      }
-    }
-
-    @keyframes phoneGlow {
-      0%, 100% {
-        text-shadow: 0 0 0 rgba(255,255,255,0);
-      }
-
-      
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AUTO PRESTIGE | Toyota Ist</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #080808;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Lignes décoratives */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 2px;
+            height: 100vh;
+            background: linear-gradient(
+                transparent,
+                #d60000,
+                transparent
+            );
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        body::before {
+            left: 8%;
+        }
+
+        body::after {
+            right: 8%;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: #e00000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #e00000;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            position: relative;
+        }
+
+        .hero-content {
+            animation: fadeUp 1.2s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 85px);
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #e00000;
+        }
+
+        .hero p {
+            color: #aaa;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .hero-line {
+            width: 100px;
+            height: 3px;
+            background: #e00000;
+            margin: 30px auto;
+            animation: lineGrow 1.5s ease;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            letter-spacing: 3px;
+        }
+
+        .section-title span {
+            color: #e00000;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #e00000;
+            margin: 20px auto;
+        }
+
+        /* VEHICULE */
+        .car-container {
+            max-width: 1100px;
+            margin: auto;
+            background: #111;
+            border: 1px solid #222;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: fadeUp 1s ease;
+        }
+
+        .car-info {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .car-info h3 {
+            font-size: 35
